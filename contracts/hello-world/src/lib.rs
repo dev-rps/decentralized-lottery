@@ -1,23 +1,63 @@
 #![no_std]
-use soroban_sdk::{contract, contractimpl, vec, Env, String, Vec};
+use soroban_sdk::{contract, contractimpl, contracttype, symbol_short, Address, Env, Symbol, Vec};
 
-#[contract]
-pub struct Contract;
-
-// This is a sample contract. Replace this placeholder with your own contract logic.
-// A corresponding test example is available in `test.rs`.
-//
-// For comprehensive examples, visit <https://github.com/stellar/soroban-examples>.
-// The repository includes use cases for the Stellar ecosystem, such as data storage on
-// the blockchain, token swaps, liquidity pools, and more.
-//
-// Refer to the official documentation:
-// <https://developers.stellar.org/docs/build/smart-contracts/overview>.
-#[contractimpl]
-impl Contract {
-    pub fn hello(env: Env, to: String) -> Vec<String> {
-        vec![&env, String::from_str(&env, "Hello"), to]
-    }
+#[contracttype]
+#[derive(Clone)]
+pub enum DataKey {
+    Admin,
+    TicketPrice,
+    Players,
+    IsActive,
 }
 
-mod test;
+#[contract]
+pub struct LotteryContract;
+
+#[contractimpl]
+impl LotteryContract {
+    // Initialize the lottery with an admin and ticket price
+    pub fn initialize(env: Env, admin: Address, ticket_price: i128) {
+        if env.storage().instance().has(&DataKey::Admin) {
+            panic!("Already initialized");
+        }
+        env.storage().instance().set(&DataKey::Admin, &admin);
+        env.storage().instance().set(&DataKey::TicketPrice, &ticket_price);
+        env.storage().instance().set(&DataKey::IsActive, &true);
+        env.storage().instance().set(&DataKey::Players, &Vec::<Address>::new(&env));
+    }
+
+    // Users call this to enter the lottery
+    pub fn buy_ticket(env: Env, buyer: Address) {
+        buyer.require_auth();
+        
+        let is_active: bool = env.storage().instance().get(&DataKey::IsActive).unwrap_or(false);
+        if !is_active { panic!("Lottery is not active"); }
+
+        let mut players: Vec<Address> = env.storage().instance().get(&DataKey::Players).unwrap();
+        players.push_back(buyer);
+        env.storage().instance().set(&DataKey::Players, &players);
+    }
+
+    // Admin picks a winner and ends the round
+    pub fn pick_winner(env: Env) -> Address {
+        let admin: Address = env.storage().instance().get(&DataKey::Admin).unwrap();
+        admin.require_auth();
+
+        let players: Vec<Address> = env.storage().instance().get(&DataKey::Players).unwrap();
+        if players.is_empty() { panic!("No players in lottery"); }
+
+        // Generate a random index using the Soroban PRNG
+        let winner_index = env.prng().u64_in_range(0..players.len() as u64);
+        let winner = players.get(winner_index as u32).unwrap();
+
+        // Reset the lottery
+        env.storage().instance().set(&DataKey::Players, &Vec::<Address>::new(&env));
+        env.storage().instance().set(&DataKey::IsActive, &false);
+
+        winner
+    }
+
+    pub fn get_players(env: Env) -> Vec<Address> {
+        env.storage().instance().get(&DataKey::Players).unwrap_or(Vec::new(&env))
+    }
+}
