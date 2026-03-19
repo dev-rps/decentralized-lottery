@@ -1,27 +1,110 @@
-# Soroban Decentralized Lottery
+# 🎰 Soroban Decentralized Lottery
 
-A transparent, secure, and decentralized lottery system built on the **Stellar Network** using the **Soroban Smart Contract** framework.
+## 📌 Project Description
 
-## 📝 Project Description
-This project implements a fair-play lottery system where users can participate by purchasing tickets. Unlike traditional lotteries, the logic is entirely on-chain, ensuring that the "Pick Winner" process is verifiable and the funds are managed by the contract code rather than a centralized entity.
+The **Soroban Decentralized Lottery** is a transparent, secure, and fully on-chain lottery system built on the Stellar network. It enables verifiable and tamper-proof prize distribution where participants enter by purchasing tickets, and winners are selected using cryptographic randomness.
 
-## 🚀 What it does
-1.  **Ticket Purchase**: Users can call the `buy_ticket` function to enter their address into the participant pool.
-2.  **Random Selection**: The contract utilizes Soroban's native `prng` (Pseudo-Random Number Generator) to select a winner, ensuring cryptographic unpredictability within the Stellar runtime.
-3.  **Admin Control**: An authorized administrator initializes the lottery and triggers the winner selection process.
+This project is designed to eliminate the need for centralized lotteries by ensuring that funds are managed strictly by contract code, and the "Pick Winner" process is publicly verifiable.
+
+## ⚡ What it does
+
+* **Ticket Purchase:** Allows users to enter the participant pool by paying a set ticket price in a single transaction.
+* **On-Chain Randomness:** Utilizes Soroban's native `prng` (Pseudo-Random Number Generator) for mathematically fair winner selection.
+* **Automated Payouts:** Automatically transfers the entire prize pool to the winner without requiring a middleman.
+* **State Management:** Securely manages active/inactive states to prevent entries after a round has concluded.
 
 ## ✨ Features
-* **Decentralized**: No central server; all data lives on the Stellar ledger.
-* **Secure Auth**: Uses Soroban's `require_auth()` to ensure only the user can spend their own funds/identity to enter.
-* **Transparency**: Anyone can query the `get_players` function to see the current pool.
-* **Gas Efficient**: Optimized Rust code for minimal resource consumption.
 
-## 🛠 Setup & Deployment
-1. **Build the contract**:
-   ```bash
-   stellar contract build
+* **🌍 Decentralized:** No central server; all participant data and funds live securely on the Stellar ledger.
+* **🔐 Secure Auth:** Uses Soroban's `require_auth()` to ensure participants are spending their own funds to enter.
+* **🔍 Complete Transparency:** Anyone can query the `get_players` function to see the current participant pool.
+* **⚡ Gas Efficient:** Optimized Rust code for minimal resource and fee consumption.
+* **🛡️ Admin Controls:** Authorized admins can initialize the contract, set ticket prices, and trigger the final draw.
 
-contract deployment link : https://stellar.expert/explorer/testnet/contract/CBLTMTDDDXFY3BKXYE6W4MY7RAQCFLKBG56MBHDZK6TIHGVHY2EJT7OV
+## 🛠️ Tech Stack
+
+* **Language:** Rust
+* **Framework:** Soroban SDK
+* **Blockchain:** Stellar Network
+
+
+
+## 🧠 How it Works
+
+1. **Initialization:** The Admin initializes the contract with a specific Token (e.g., test USDC/XLM) and a Ticket Price.
+2. **Participation:** Users invoke `buy_ticket`. The contract charges them the ticket price and adds their address to the ledger.
+3. **The Draw:** The Admin invokes `pick_winner`. The contract generates a random number, selects a winner, transfers the pooled tokens to them, and resets the lottery for the next round!
+
+## 📄 Contract Functions
+
+🔹 `initialize`
+* **Purpose:** Sets up the lottery round.
+* **Parameters:** `admin` (Address), `token_addr` (Address), `ticket_price` (i128)
+
+🔹 `buy_ticket`
+* **Purpose:** Enters a user into the lottery.
+* **Parameters:** `buyer` (Address)
+
+🔹 `pick_winner`
+* **Purpose:** Selects a random winner and pays out the pool.
+* **Returns:** Winner's Address
+
+🔹 `get_players`
+* **Purpose:** Views the current participant pool.
+* **Returns:** Vector of Addresses
+
+## ⚙️ Installation & Build
+
+```bash
+# Clone the repository
+git clone https://github.com/dev-rps/decentralized-lottery.git
+
+# Navigate into the project
+cd decentralized-lottery/contracts/hello-world
+
+# Build the contract
+stellar contract build
+```
+
+## 🚀 Deployment
+
+Deploy the contract on the Stellar Testnet:
+```bash
+stellar contract deploy \
+  --wasm target/wasm32v1-none/release/hello_world.wasm \
+  --source YOUR_ACCOUNT \
+  --network testnet
+```
+
+## 🌐 Deployed Smart Contract
+
+* **Contract Address:** `CBLTMTDDDXFY3BKXYE6W4MY7RAQCFLKBG56MBHDZK6TIHGVHY2EJT7OV`
+* **Network:** Stellar Testnet
+* **Explorer Link:** 👉 [View on Stellar.Expert](https://stellar.expert/explorer/testnet/contract/CBLTMTDDDXFY3BKXYE6W4MY7RAQCFLKBG56MBHDZK6TIHGVHY2EJT7OV)
+* **Link Address:** https://stellar.expert/explorer/testnet/contract/CBLTMTDDDXFY3BKXYE6W4MY7RAQCFLKBG56MBHDZK6TIHGVHY2EJT7OV
 <img width="1920" height="1080" alt="contract screenshot" src="https://github.com/user-attachments/assets/c6b03a00-b4c4-4b5b-b6f0-4bde7c623d02" />
 
+## 🧪 Future Improvements
 
+* 📦 **Multiple Winners:** Support for 1st, 2nd, and 3rd place prize splits.
+* ⏳ **Time-Locked Draws:** Automatically trigger draws via a cron job instead of an admin trigger.
+* 🎯 **Dynamic Ticket Pricing:** Allowing users to buy multiple entries in a single transaction.
+* 🌐 **Frontend Dashboard:** A React/Next.js UI for users to seamlessly buy tickets with their Freighter wallet.
+
+## 🤝 Contributing
+
+Contributions are welcome! Feel free to fork the repository and submit a pull request if you want to add new features or optimize the logic.
+
+## 👤 Author
+
+* **Name:** Rudra Pratap Singh
+* **Email:** rpscodes@gmail.com
+* **GitHub:** [dev-rps](https://github.com/dev-rps)
+
+## 📜 License
+
+This project is licensed under the MIT License.
+
+## ⭐ Acknowledgment
+
+Built using the powerful **Soroban SDK** on the Stellar network to enable scalable, transparent, and efficient smart contract development.
