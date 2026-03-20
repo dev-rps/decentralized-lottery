@@ -48,17 +48,17 @@ export default function HeroSection() {
 
           {/* Stats Row */}
           <div className="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
-            <div className="p-4 rounded-lg bg-dark-card/50 border border-border-color/30 backdrop-blur-sm">
+            <div className="p-4 rounded-lg bg-dark-card border border-border-color/30 backdrop-blur-sm opacity-50">
               <div className="text-2xl sm:text-3xl font-bold text-neon-green mb-2">$50,000</div>
               <p className="text-sm sm:text-base text-foreground/60">Current Jackpot</p>
             </div>
 
-            <div className="p-4 rounded-lg bg-dark-card/50 border border-border-color/30 backdrop-blur-sm">
+            <div className="p-4 rounded-lg bg-dark-card border border-border-color/30 backdrop-blur-sm opacity-50">
               <div className="text-2xl sm:text-3xl font-bold text-neon-purple mb-2">1,247</div>
               <p className="text-sm sm:text-base text-foreground/60">Active Players</p>
             </div>
 
-            <div className="p-4 rounded-lg bg-dark-card/50 border border-border-color/30 backdrop-blur-sm">
+            <div className="p-4 rounded-lg bg-dark-card border border-border-color/30 backdrop-blur-sm opacity-50">
               <div className="text-2xl sm:text-3xl font-bold text-primary-purple mb-2">15h 32m</div>
               <p className="text-sm sm:text-base text-foreground/60">Until Next Draw</p>
             </div>

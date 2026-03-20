@@ -22,7 +22,7 @@ export default function PlayersSection() {
       <div className="mx-auto max-w-7xl">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
           {/* Current Players */}
-          <div className="rounded-2xl border border-neon-purple/30 bg-dark-card/50 p-6 sm:p-8 backdrop-blur-sm hover:border-neon-purple/50 transition-all duration-300">
+          <div className="rounded-2xl border border-neon-purple/30 bg-dark-card p-6 sm:p-8 backdrop-blur-sm opacity-50 hover:border-neon-purple/50 transition-all duration-300">
             <div className="flex items-center gap-3 mb-6">
               <div className="h-8 w-8 rounded-lg bg-neon-purple/20 flex items-center justify-center">
                 <span className="text-neon-purple font-bold">👥</span>
@@ -62,7 +62,7 @@ export default function PlayersSection() {
           </div>
 
           {/* Previous Winner */}
-          <div className="rounded-2xl border border-neon-green/30 bg-dark-card/50 p-6 sm:p-8 backdrop-blur-sm hover:border-neon-green/50 transition-all duration-300">
+          <div className="rounded-2xl border border-neon-green/30 bg-dark-card p-6 sm:p-8 backdrop-blur-sm opacity-50 hover:border-neon-green/50 transition-all duration-300">
             <div className="flex items-center gap-3 mb-6">
               <div className="h-8 w-8 rounded-lg bg-neon-green/20 flex items-center justify-center">
                 <span className="text-neon-green font-bold">🏆</span>

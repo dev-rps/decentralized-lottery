@@ -1,39 +1,46 @@
-# 🎰 Soroban Decentralized Lottery
+# 🎰 Stellar Lottery - Web3 Frontend
 
 ## 📌 Project Description
 
-The **Soroban Decentralized Lottery** is a transparent, secure, and fully on-chain lottery system built on the Stellar network. It enables verifiable and tamper-proof prize distribution where participants enter by purchasing tickets, and winners are selected using cryptographic randomness.
+The **Stellar Lottery Frontend** is a modern, cyberpunk-themed Web3 user interface built with React, Next.js, and Tailwind CSS. It provides a seamless experience for users to interact with the Soroban Decentralized Lottery smart contract on the Stellar network.
 
-This project is designed to eliminate the need for centralized lotteries by ensuring that funds are managed strictly by contract code, and the "Pick Winner" process is publicly verifiable.
+This frontend enables users to purchase lottery tickets, view current players, check previous winners, and connect their Freighter wallet for secure transactions.
 
 ## ⚡ What it does
 
-* **Ticket Purchase:** Allows users to enter the participant pool by paying a set ticket price in a single transaction.
-* **On-Chain Randomness:** Utilizes Soroban's native `prng` (Pseudo-Random Number Generator) for mathematically fair winner selection.
-* **Automated Payouts:** Automatically transfers the entire prize pool to the winner without requiring a middleman.
-* **State Management:** Securely manages active/inactive states to prevent entries after a round has concluded.
+* **Wallet Connection:** Seamless Freighter wallet integration for Stellar Network authentication.
+* **Ticket Purchase:** User-friendly interface to buy lottery tickets (10 XLM per ticket).
+* **Live Stats:** Real-time display of jackpot amount, active player count, and countdown timer.
+* **Player Tracking:** View current players and their ticket counts.
+* **Winner Display:** See previous draw winner, prize amount, and winning numbers.
 
 ## ✨ Features
 
-* **🌍 Decentralized:** No central server; all participant data and funds live securely on the Stellar ledger.
-* **🔐 Secure Auth:** Uses Soroban's `require_auth()` to ensure participants are spending their own funds to enter.
-* **🔍 Complete Transparency:** Anyone can query the `get_players` function to see the current participant pool.
-* **⚡ Gas Efficient:** Optimized Rust code for minimal resource and fee consumption.
-* **🛡️ Admin Controls:** Authorized admins can initialize the contract, set ticket prices, and trigger the final draw.
+* **🎨 Cyberpunk UI:** Modern dark-themed interface with neon purple and glowing green accents.
+* **📱 Fully Responsive:** Mobile-first design that works seamlessly on all devices.
+* **🔐 Wallet Integration:** Secure Freighter wallet connection for the Stellar Network.
+* **⚡ Real-time Updates:** Live jackpot, player count, and countdown timer displays.
+* **🏆 Winner Showcase:** View previous draw winners with prize amounts and winning numbers.
+* **💜 Premium Design:** Smooth animations, gradient text, and glowing effects for an immersive experience.
 
 ## 🛠️ Tech Stack
 
-* **Language:** Rust
-* **Framework:** Soroban SDK
-* **Blockchain:** Stellar Network
+* **Frontend Framework:** Next.js 14 with App Router
+* **UI Library:** React 18
+* **Styling:** Tailwind CSS 3
+* **Language:** TypeScript 5
+* **Blockchain:** Stellar Network (Freighter Wallet Integration)
+* **Deployment:** Vercel
 
 
 
 ## 🧠 How it Works
 
-1. **Initialization:** The Admin initializes the contract with a specific Token (e.g., test USDC/XLM) and a Ticket Price.
-2. **Participation:** Users invoke `buy_ticket`. The contract charges them the ticket price and adds their address to the ledger.
-3. **The Draw:** The Admin invokes `pick_winner`. The contract generates a random number, selects a winner, transfers the pooled tokens to them, and resets the lottery for the next round!
+1. **Connect Wallet:** Users click "Connect Freighter" to authenticate with their Stellar account.
+2. **Buy Tickets:** Users can purchase lottery tickets (10 XLM each) through the intuitive interface.
+3. **View Players:** Real-time display of all current players and their ticket counts.
+4. **Check Winners:** View previous draw winners, prize amounts, and winning numbers.
+5. **Monitor Stats:** Track live jackpot, active players, and time until the next draw.
 
 ## 📄 Contract Functions
 
@@ -53,43 +60,47 @@ This project is designed to eliminate the need for centralized lotteries by ensu
 * **Purpose:** Views the current participant pool.
 * **Returns:** Vector of Addresses
 
-## ⚙️ Installation & Build
+## ⚙️ Installation & Setup
 
 ```bash
 # Clone the repository
 git clone https://github.com/dev-rps/decentralized-lottery.git
 
-# Navigate into the project
-cd decentralized-lottery/contracts/hello-world
+# Navigate to the frontend directory
+cd decentralized-lottery
 
-# Build the contract
-stellar contract build
+# Install dependencies
+npm install
+
+# Run development server
+npm run dev
 ```
+
+Open [http://localhost:3000](http://localhost:3000) to see the application.
 
 ## 🚀 Deployment
 
-Deploy the contract on the Stellar Testnet:
+Deploy to Vercel:
 ```bash
-stellar contract deploy \
-  --wasm target/wasm32v1-none/release/hello_world.wasm \
-  --source YOUR_ACCOUNT \
-  --network testnet
+npm run build
+vercel deploy
 ```
 
-## 🌐 Deployed Smart Contract
+## 🌐 Smart Contract Integration
 
 * **Contract Address:** `CBLTMTDDDXFY3BKXYE6W4MY7RAQCFLKBG56MBHDZK6TIHGVHY2EJT7OV`
 * **Network:** Stellar Testnet
 * **Explorer Link:** 👉 [View on Stellar.Expert](https://stellar.expert/explorer/testnet/contract/CBLTMTDDDXFY3BKXYE6W4MY7RAQCFLKBG56MBHDZK6TIHGVHY2EJT7OV)
-* **Link Address:** https://stellar.expert/explorer/testnet/contract/CBLTMTDDDXFY3BKXYE6W4MY7RAQCFLKBG56MBHDZK6TIHGVHY2EJT7OV
-<img width="1920" height="1080" alt="contract screenshot" src="https://github.com/user-attachments/assets/c6b03a00-b4c4-4b5b-b6f0-4bde7c623d02" />
+
+This frontend interacts with the Soroban smart contract to provide a seamless user experience for purchasing lottery tickets and viewing draw results.
 
 ## 🧪 Future Improvements
 
-* 📦 **Multiple Winners:** Support for 1st, 2nd, and 3rd place prize splits.
-* ⏳ **Time-Locked Draws:** Automatically trigger draws via a cron job instead of an admin trigger.
-* 🎯 **Dynamic Ticket Pricing:** Allowing users to buy multiple entries in a single transaction.
-* 🌐 **Frontend Dashboard:** A React/Next.js UI for users to seamlessly buy tickets with their Freighter wallet.
+* 🔌 **Smart Contract Integration:** Direct contract interaction for buying tickets and checking results.
+* 📊 **Advanced Analytics:** Detailed statistics and probability calculations for players.
+* 🎯 **Multi-Round Support:** Track and display multiple lottery rounds with historical data.
+* 🔔 **Notifications:** Real-time alerts for draws, winners, and ticket confirmations.
+* 🌙 **Dark/Light Theme Toggle:** User preference for theme selection.
 
 ## 🤝 Contributing
 
