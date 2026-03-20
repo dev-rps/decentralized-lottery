@@ -16,45 +16,36 @@ export default function Footer() {
             </p>
           </div>
 
-          {/* Links */}
+          {/* Contact & Resources */}
+          <div>
+            <h4 className="font-semibold text-foreground mb-4">Contact</h4>
+            <div className="space-y-3">
+              <p className="text-xs text-foreground/60 font-mono break-all bg-secondary/20 p-2 rounded border border-neon-purple/30">
+                CBLTMTDDDXFY3BKXYE6W4MY7RAQCFLKBG56MBHDZK6TIHGVHY2EJT7OV
+              </p>
+              <p className="text-xs text-foreground/50">
+                Stellar Network Address
+              </p>
+            </div>
+          </div>
+
+          {/* Resources */}
           <div>
             <h4 className="font-semibold text-foreground mb-4">Resources</h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <a href="#" className="text-foreground/60 hover:text-neon-purple transition-colors">
+                <a href="#" className="text-foreground/60 hover:text-neon-green transition-colors">
                   How to Play
                 </a>
               </li>
               <li>
-                <a href="#" className="text-foreground/60 hover:text-neon-purple transition-colors">
+                <a href="#" className="text-foreground/60 hover:text-neon-green transition-colors">
                   Smart Contracts
                 </a>
               </li>
               <li>
-                <a href="#" className="text-foreground/60 hover:text-neon-purple transition-colors">
+                <a href="#" className="text-foreground/60 hover:text-neon-green transition-colors">
                   FAQ
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          {/* Social */}
-          <div>
-            <h4 className="font-semibold text-foreground mb-4">Community</h4>
-            <ul className="space-y-2 text-sm">
-              <li>
-                <a href="#" className="text-foreground/60 hover:text-neon-green transition-colors">
-                  Discord
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-foreground/60 hover:text-neon-green transition-colors">
-                  Twitter
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-foreground/60 hover:text-neon-green transition-colors">
-                  GitHub
                 </a>
               </li>
             </ul>
