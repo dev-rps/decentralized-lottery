@@ -37,18 +37,15 @@ export default function Header() {
           {/* Wallet Connection Button */}
           <button
             onClick={handleConnect}
-            className={`relative px-6 py-2 rounded-lg font-semibold transition-all duration-300 ${
+            className={`relative group px-6 py-2 rounded-lg font-semibold transition-all duration-300 ${
               isConnected
                 ? 'bg-accent-green/20 text-neon-green border border-neon-green/50'
-                : 'bg-neon-purple/20 text-neon-purple border border-neon-purple/50 hover:bg-neon-purple/30 hover:shadow-glow-purple'
+                : 'bg-neon-purple/20 text-neon-purple border border-neon-purple/50 hover:bg-neon-purple/30'
             }`}
           >
-            <div className="relative">
-              <div className={`absolute inset-0 rounded-lg ${isConnected ? 'bg-neon-green/20' : 'bg-neon-purple/20'} blur opacity-0 group-hover:opacity-100 transition duration-300`} />
-              <span className="relative">
-                {isConnected ? `✓ ${walletAddress}` : '🔗 Connect Freighter'}
-              </span>
-            </div>
+            <span>
+              {isConnected ? `✓ ${walletAddress}` : '🔗 Connect Freighter'}
+            </span>
           </button>
         </div>
       </div>

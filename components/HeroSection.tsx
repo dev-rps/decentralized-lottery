@@ -30,14 +30,13 @@ export default function HeroSection() {
             <button
               onMouseEnter={() => setIsHovering(true)}
               onMouseLeave={() => setIsHovering(false)}
-              className={`relative group px-8 sm:px-12 py-4 sm:py-5 rounded-xl font-bold text-lg transition-all duration-300 ${
+              className={`relative px-8 sm:px-12 py-4 sm:py-5 rounded-xl font-bold text-lg transition-all duration-300 ${
                 isHovering
-                  ? 'bg-neon-purple text-white shadow-glow-purple-lg scale-105'
-                  : 'bg-neon-purple/20 text-neon-purple border border-neon-purple/50 hover:shadow-glow-purple'
+                  ? 'bg-neon-purple text-white scale-105'
+                  : 'bg-neon-purple/20 text-neon-purple border border-neon-purple/50'
               }`}
             >
-              <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-neon-purple to-primary-purple opacity-0 group-hover:opacity-20 blur transition duration-300" />
-              <span className="relative flex items-center justify-center gap-2">
+              <span className="flex items-center justify-center gap-2">
                 🎰 Buy Ticket (10 XLM)
               </span>
             </button>
