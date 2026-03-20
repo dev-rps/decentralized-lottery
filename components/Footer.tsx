@@ -20,7 +20,7 @@ export default function Footer() {
           <div>
             <h4 className="font-semibold text-foreground mb-4">Contact</h4>
             <div className="space-y-3">
-              <p className="text-xs text-foreground/60 font-mono break-all bg-secondary/20 p-2 rounded border border-neon-purple/30">
+              <p className="text-xs text-foreground/60 font-mono break-all bg-neon-purple/10 p-2 rounded border border-neon-purple/30">
                 CBLTMTDDDXFY3BKXYE6W4MY7RAQCFLKBG56MBHDZK6TIHGVHY2EJT7OV
               </p>
               <p className="text-xs text-foreground/50">
